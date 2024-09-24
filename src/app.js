@@ -4,9 +4,16 @@ const Restaurant = require("../models/index");
 const db = require("../db/connection");
 
 //TODO: Create your GET Request Route Below:
-app.get("/restauraunts", async (req, res) => {
-  const restauraunts = await Restaurant.findAll({});
-  res.json(restauraunts);
+app.get("/restaurants", async (req, res) => {
+  const restaurants = await Restaurant.findAll({});
+  res.json(restaurants);
+});
+
+app.get("/restaurants/:id", async (req, res) => {
+  const { id } = req.params;
+  const restaurant = await Restaurant.findByPk(`${id}`);
+
+  res.json(restaurant);
 });
 
 module.exports = app;
